@@ -1,0 +1,14 @@
+@import '../../styles/mixins.scss';
+
+.wrapper {
+  width: 100%;
+  padding: 2em 0;
+
+  @include medium() {
+    padding: 3em 0;
+  }
+
+  @include big() {
+    padding: 4em 0;
+  }
+}

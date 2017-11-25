@@ -1,0 +1,99 @@
+@import '../../styles/mixins.scss';
+
+$bgContainerInactive: #0558a5;
+$bgContainerActive: #2b98f1;
+$bgBox: rgba(255, 255, 255, .25);
+$sizeBox: 50%;
+$sizeBoxBefore: 50%;
+$sizeBoxAfter: 40%;
+$radiusBox: 10px;
+$radiusBoxPseudo: 5px;
+$dash: 2px;
+
+@keyframes boxBefore {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(-25%, -25%);
+  }
+}
+
+@keyframes boxAfter {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(25%, 25%);
+  }
+}
+
+.container-box {
+  position: relative;
+  background-color: $bgContainerInactive;
+  border-radius: $radiusBox;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  height: 60vw;
+  width: 60vw;
+  margin: 0 auto;
+  transition: .3s ease;
+
+  @include medium() {
+    height: 40vw;
+    width: 40vw;
+  }
+
+  @include big() {
+    height: 600px;
+    width: 600px;
+  }
+
+  &.active {
+    background-color: $bgContainerActive;
+  }
+}
+
+.box {
+  position: relative;
+  width: $sizeBox;
+  height: $sizeBox;
+  background-color: $bgBox;
+  border-radius: $radiusBox;
+  top: 50%;
+  left: 50%;
+  margin: -25%;
+  overflow: hidden;
+  transition: .3s ease;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    border-radius: $radiusBoxPseudo;
+  }
+
+  &::before {
+    width: $sizeBoxBefore;
+    height: $sizeBoxBefore;
+    margin: -($sizeBoxBefore/2);
+    background-color: $bgBox; // semitrasparent over semitrasparent
+    opacity: 0;
+    animation: .75s ease-out .5s 1 fadeIn forwards,
+               .5s ease-in .75s 1 boxBefore forwards;
+  }
+
+  &::after {
+    width: $sizeBoxAfter;
+    height: $sizeBoxAfter;
+    margin: calc(-#{$sizeBoxAfter/2} - #{$dash}) calc(-#{$sizeBoxAfter/2} - #{$dash});
+    border: dashed $dash #FFF;
+    opacity: 0;
+    animation: .75s ease-out 1.5s 1 fadeIn forwards,
+               .5s ease-in 1.75s 1 boxAfter forwards;
+    //display: none;
+  }
+}

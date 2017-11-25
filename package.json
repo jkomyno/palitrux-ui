@@ -1,0 +1,32 @@
+{
+  "name": "Palitrux",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/jest": "^21.1.8",
+    "@types/node": "^8.0.53",
+    "@types/react": "^16.0.25",
+    "@types/react-dnd": "^2.0.34",
+    "@types/react-dnd-html5-backend": "^2.1.8",
+    "@types/react-dom": "^16.0.3",
+    "node-sass-chokidar": "^0.0.3",
+    "react-scripts-ts": "2.8.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "react": "^16.1.1",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
+    "react-dom": "^16.1.1"
+  },
+  "scripts": {
+    "build:all": "yarn scss:build && yarn build",
+    "build": "react-scripts-ts build",
+    "eject": "react-scripts-ts eject",
+    "scss:build": "node-sass-chokidar src/ -o src/",
+    "scss:watch": "yarn scss:build && yarn scss:build --watch --recursive",
+    "start": "react-scripts-ts start",
+    "test": "react-scripts-ts test --env=jsdom"
+  }
+}
