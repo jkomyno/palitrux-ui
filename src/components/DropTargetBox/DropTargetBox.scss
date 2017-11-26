@@ -19,6 +19,17 @@ $dash: 2px;
   }
 }
 
+@keyframes boxBeforeReturn {
+  0% {
+    opacity: 1;
+    transform: translate(-25%, -25%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+}
+
 @keyframes boxAfter {
   0% {
     transform: translate(0%, 0%);
@@ -28,30 +39,14 @@ $dash: 2px;
   }
 }
 
-.container-box {
-  position: relative;
-  background-color: $bgContainerInactive;
-  border-radius: $radiusBox;
-  text-align: center;
-  cursor: pointer;
-  overflow: hidden;
-  height: 60vw;
-  width: 60vw;
-  margin: 0 auto;
-  transition: .3s ease;
-
-  @include medium() {
-    height: 40vw;
-    width: 40vw;
+@keyframes boxAfterReturn {
+  0% {
+    opacity: 1;
+    transform: translate(25%, 25%);
   }
-
-  @include big() {
-    height: 600px;
-    width: 600px;
-  }
-
-  &.active {
-    background-color: $bgContainerActive;
+  100% {
+    opacity: 1;
+    transform: translate(0%, 0%);
   }
 }
 
@@ -82,8 +77,8 @@ $dash: 2px;
     margin: -($sizeBoxBefore/2);
     background-color: $bgBox; // semitrasparent over semitrasparent
     opacity: 0;
-    animation: .75s ease-out .5s 1 fadeIn forwards,
-               .5s ease-in .75s 1 boxBefore forwards;
+    animation: .75s ease .25s 1 fadeIn forwards,
+               .5s ease-out .5s 1 boxBefore forwards;
   }
 
   &::after {
@@ -92,8 +87,69 @@ $dash: 2px;
     margin: calc(-#{$sizeBoxAfter/2} - #{$dash}) calc(-#{$sizeBoxAfter/2} - #{$dash});
     border: dashed $dash #FFF;
     opacity: 0;
-    animation: .75s ease-out 1.5s 1 fadeIn forwards,
-               .5s ease-in 1.75s 1 boxAfter forwards;
+    animation: .75s ease .5s 1 fadeIn forwards,
+               .5s ease-out .75s 1 boxAfter forwards;
     //display: none;
+  }
+}
+
+.progress {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #fff;
+  transition: 1s ease;
+
+  &.complete {
+    width: 100%;
+  }
+}
+
+.container-box {
+  position: relative;
+  background-color: $bgContainerInactive;
+  border-radius: $radiusBox;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  height: 60vw;
+  width: 60vw;
+  margin: 0 auto;
+  transition: .3s ease;
+
+  @include medium() {
+    height: 40vw;
+    width: 40vw;
+  }
+
+  @include big() {
+    height: 600px;
+    width: 600px;
+  }
+
+  &.active {
+    background-color: $bgContainerActive;
+
+    & .box {
+      width: 100%;
+      height: 100%;
+      left: 25%;
+      top: 25%;
+
+      &::before {
+        animation: .3s ease-in boxBeforeReturn forwards;
+      }
+
+      &::after {
+        animation: .3s ease-in boxAfterReturn forwards;
+      }
+    }
+
+    &.dropped .box {
+      height: 0;
+    }
   }
 }

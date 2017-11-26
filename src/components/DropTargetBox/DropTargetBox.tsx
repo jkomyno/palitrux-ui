@@ -32,7 +32,7 @@ class DropTargetBox extends React.PureComponent<Props> {
     return connectDropTarget(
       <div className={this.classNames}>
         <div className="box fadeIn">
-
+          <div className="progress" />
         </div>
       </div>
     );
