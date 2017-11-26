@@ -5,6 +5,7 @@ import {
   DropTarget,
 } from 'react-dnd';
 import * as cx from 'classnames';
+import ColorStripes from '../ColorStripes';
 import './DropTargetBox.css';
 import { Props, InjectedProps } from './types';
 
@@ -34,6 +35,7 @@ class DropTargetBox extends React.PureComponent<Props> {
         <div className="box fadeIn">
           <div className="progress" />
         </div>
+        <ColorStripes />
       </div>
     );
   }

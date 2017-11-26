@@ -1,10 +1,12 @@
 import * as React from 'react';
+import './ColorStripes.css';
 
 interface InjectedProps {
   colors: Array<string>;
 }
 
 export default class ColorStripes extends React.PureComponent {
+  
   get injected() {
     return this.props as InjectedProps;
   }
