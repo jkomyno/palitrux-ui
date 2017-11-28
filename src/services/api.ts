@@ -1,9 +1,9 @@
-const colorUrl = 'http://localhost:3000/palitra';
+const colorUrl = 'http://localhost:8080/dominantColors';
 
 export function fetchColor(img: File) {
   const formData = new FormData();
   formData.append('file', img);
-  formData.append('name', img.name);
+  formData.append('limit', "3");
 
   const init = {
     method: 'POST',
@@ -11,5 +11,6 @@ export function fetchColor(img: File) {
   };
 
   return fetch(colorUrl, init)
-    .then(response => response.json())
+    .then(response => response.json()
+  );
 }

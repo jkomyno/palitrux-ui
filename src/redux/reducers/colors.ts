@@ -8,14 +8,19 @@ import {
 } from '../types';
 
 const fetchColorRequested = ActionCreator<File>(COLOR_FETCH_REQUESTED);
-const fetchColorSucceded = ActionCreator<Array<string>>(COLOR_FETCH_SUCCEDED);
+const fetchColorSucceded = ActionCreator<Array<ColorsT>>(COLOR_FETCH_SUCCEDED);
 const fetchColorFailed = ActionCreator<string>(COLOR_FETCH_FAILED);
 
+export type ColorsT = {
+  color: string;
+  percentage: string;
+}
+
 export type State = {
-  readonly colors: Array<string>,
+  readonly colors: Array<ColorsT>,
   readonly loading: boolean,
   error?: string,
-}
+};
 export const initialState: State = {
   colors: [],
   loading: false,
@@ -43,8 +48,8 @@ export default (state = initialState, action: Action): State => {
       loading: false,
       colors: [],
       error: action.payload,
-    }
+    };
   }
 
   return state;
-}
+};

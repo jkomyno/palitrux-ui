@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import store from '../../redux/store';
 import Popup from '../Popup';
 import DropTargetContainer from '../DropTargetContainer';
 
@@ -12,7 +14,11 @@ export default class App extends React.PureComponent {
           message="Drop your pic below"
         />
       ),
-      <DropTargetContainer key="dropTargetContainer" />
+      (
+        <Provider key="dropTargetContainerProvider" store={store}>
+          <DropTargetContainer />
+        </Provider>
+      ),
     ];
   }
 }

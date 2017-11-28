@@ -9,16 +9,13 @@ import ColorStripes from '../ColorStripes';
 import './DropTargetBox.css';
 import { Props, InjectedProps } from './types';
 
-class DropTargetBox extends React.PureComponent<Props> {
-  get injected() {
-    return this.props as InjectedProps;
-  }
+class DropTargetBox extends React.PureComponent<Props & InjectedProps> {
 
   get classNames() {
     return cx(
       'container-box',
       {
-        'scale active': this.injected.isOver && this.injected.canDrop,
+        'scale active': this.props.isOver && this.props.canDrop,
       },
     );
   }
@@ -26,9 +23,9 @@ class DropTargetBox extends React.PureComponent<Props> {
   render() {
     const {
       connectDropTarget,
-    } = this.injected;
+    } = this.props;
 
-    console.log('this.injected', this.injected);
+    console.log('this.props', this.props);
 
     return connectDropTarget(
       <div className={this.classNames}>

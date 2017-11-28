@@ -9,7 +9,7 @@ const addFile = ActionCreator<File>(ADD_FILE);
 
 export type State = {
   readonly droppedFile?: File,
-}
+};
 export const initialState: State = {
   droppedFile: undefined,
 };
@@ -24,4 +24,4 @@ export default (state = initialState, action: Action): State => {
   }
 
   return state;
-}
+};

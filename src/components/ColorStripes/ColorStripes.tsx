@@ -12,7 +12,7 @@ export default class ColorStripes extends React.PureComponent {
   }
   
   renderColorStripes = () => (
-    this.injected.colors.map(color => (
+    this.injected.colors && this.injected.colors.map(color => (
       <div
         key={color}
         className="flex1"
