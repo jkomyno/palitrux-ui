@@ -18,10 +18,10 @@ export const fetchColorRequested: fetchColorRequestedT = (file, limit) => ({
   payload: file,
 });
 
-export type fetchColorSuccededT = (colors: Array<ColorsT>) => Actions.COLOR_FETCH_SUCCEDED;
-export const fetchColorSucceded: fetchColorSuccededT = (colors) => ({
+export type fetchColorSuccededT = (colorList: Array<ColorsT>) => Actions.COLOR_FETCH_SUCCEDED;
+export const fetchColorSucceded: fetchColorSuccededT = (colorList) => ({
   type: COLOR_FETCH_SUCCEDED,
-  payload: colors,
+  payload: colorList,
 });
 
 export type fetchColorFailedT = (message: string) => Actions.COLOR_FETCH_FAILED;

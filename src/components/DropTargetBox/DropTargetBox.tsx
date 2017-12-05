@@ -3,6 +3,7 @@ import {
   DropTargetSpec,
   DropTargetCollector,
   DropTarget,
+  DropTargetMonitor,
 } from 'react-dnd';
 import * as cx from 'classnames';
 import ColorStripes from '../ColorStripes';
@@ -20,19 +21,31 @@ class DropTargetBox extends React.PureComponent<Props & InjectedProps> {
     );
   }
 
-  render() {
+  renderColorStripes = () => {
     const {
-      connectDropTarget,
+      isOver,
+      colorList,
     } = this.props;
 
-    console.log('this.props', this.props);
+    if (
+      !isOver &&
+      !!colorList.length
+    ) {
+      return <ColorStripes colorList={colorList} />;
+    }
+
+    return null;
+  }
+
+  render() {
+    const { connectDropTarget } = this.props;
 
     return connectDropTarget(
       <div className={this.classNames}>
         <div className="box fadeIn">
           <div className="progress" />
         </div>
-        <ColorStripes />
+        {this.renderColorStripes()}
       </div>
     );
   }
@@ -40,7 +53,7 @@ class DropTargetBox extends React.PureComponent<Props & InjectedProps> {
 
 const typesDT = (props: Props) => props.accepts;
 const specDT: DropTargetSpec<Props> = {
-  drop(props, monitor) {
+  drop(props: Props, monitor: DropTargetMonitor) {
     if (props.onDrop) {
       props.onDrop(props, monitor);
     }

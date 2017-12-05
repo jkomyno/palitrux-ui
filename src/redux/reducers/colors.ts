@@ -14,15 +14,15 @@ const fetchColorFailed = ActionCreator<string>(COLOR_FETCH_FAILED);
 export type ColorsT = {
   color: string;
   percentage: string;
-}
+};
 
 export type State = {
-  readonly colors: Array<ColorsT>,
+  readonly colorList: Array<ColorsT>,
   readonly loading: boolean,
   error?: string,
 };
 export const initialState: State = {
-  colors: [],
+  colorList: [],
   loading: false,
   error: undefined,
 };
@@ -32,21 +32,21 @@ export default (state = initialState, action: Action): State => {
     return {
       ...state,
       loading: true,
-      colors: [],
+      colorList: [],
     };
   }
   if (isType(action, fetchColorSucceded)) {
     return {
       ...state,
       loading: false,
-      colors: action.payload,
+      colorList: action.payload,
     };
   }
   if (isType(action, fetchColorFailed)) {
     return {
       ...state,
       loading: false,
-      colors: [],
+      colorList: [],
       error: action.payload,
     };
   }

@@ -1,11 +1,48 @@
+@keyframes slideFromLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate3d(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate3d(0);
+    opacity: 1;
+  }
+}
+
 .flex-container {
   display: flex;
   height: 100%;
   flex-direction: column;
   position: relative;
-  top: 50%;
 }
 
 .flex1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
+
+  &.left {
+    animation: .3s ease-in slideFromLeft forwards;
+  }
+
+  &.right {
+    animation: .3s ease-in slideFromRight forwards;
+  }
+}
+
+span {
+  padding: 10px;
+  background: #FFF;
 }

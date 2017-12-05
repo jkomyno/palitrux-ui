@@ -1,3 +1,5 @@
+// this file refers to redux's types, not TypeScript's
+
 // files
 export const ADD_FILE: string = 'ADD_FILE';
 
